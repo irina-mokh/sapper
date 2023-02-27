@@ -3,15 +3,19 @@ export function randomIntFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const MINES_TOTAL = 40;
-const COLS = 16;
-const ROWS = 16;
+export const MINES_TOTAL = 40;
+export const COLS = 16;
+export const ROWS = 16;
 
-export const generateGame = (rowStart: number, colStart: number) => {
-  const game = [];
-  while (game.length < ROWS) {
-    game.push(new Array(COLS).fill(0));
+export const generateEmptyBoard = () => {
+  const board = [];
+  while (board.length < ROWS) {
+    board.push(new Array(COLS).fill(0));
   }
+  return board;
+};
+export const generateGame = (rowStart: number, colStart: number) => {
+  const game = generateEmptyBoard();
 
   let mines = 0;
   while (mines <= MINES_TOTAL) {
