@@ -1,9 +1,11 @@
 import React from 'react';
+import { Game } from '../Game';
 
 export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header"></header>
+    <div className="app">
+      <header className="app__header">{/* <div>{timer}</div> */}</header>
+      <Game></Game>
     </div>
   );
 };
