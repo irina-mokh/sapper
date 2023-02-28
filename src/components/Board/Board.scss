@@ -14,6 +14,11 @@
 	&_flag {
 		border: 1px solid red;
 	}
+
+	&_question {
+		border: 1px solid blue;
+	}
+
 	&_hidden {
 		&::after {
 			z-index: 2;

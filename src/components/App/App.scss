@@ -10,3 +10,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.btn {
+  background-color: transparent;
+  border: 1px solid vars.$gray;
+  &_fail {
+    border-color: red;
+  }
+  &_win {
+    border-color: green;
+  }
+}

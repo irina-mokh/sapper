@@ -12,6 +12,8 @@ export const Timer = ({ isActive }: TimerProps) => {
       interval = setInterval(() => {
         setCounter((counter) => counter + 1);
       }, 1000);
+    } else {
+      setCounter(0);
     }
     return () => clearInterval(interval);
   }, [isActive, counter]);
