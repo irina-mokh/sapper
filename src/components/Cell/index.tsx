@@ -4,9 +4,7 @@ import { RootState } from '../../store';
 import {
   openBoardCell,
   decrementMines,
-  decrementRest,
   incrementMines,
-  incrementRest,
   runGame,
   setRes,
   stopGame,
@@ -47,7 +45,8 @@ export function Cell({ cell, c, r }: CellProps) {
     }
   };
   useEffect(() => {
-    if (isActive && board[r][c].val === 0) {
+    // console.log('UE open', cell, c, r);
+    if (isActive && board[r][c].val === 0 && board[r][c].open) {
       if (r > 0) checkForZero(r - 1, c);
       if (r < 15) checkForZero(r + 1, c);
       if (c < 15) checkForZero(r, c + 1);
@@ -89,12 +88,12 @@ export function Cell({ cell, c, r }: CellProps) {
       case 'empty':
         setMark('flag');
         dispatch(decrementMines());
-        dispatch(decrementRest());
+        // dispatch(decrementRest());
         break;
       case 'flag':
         setMark('question');
         dispatch(incrementMines());
-        dispatch(incrementRest());
+        // dispatch(incrementRest());
         break;
       case 'question':
         setMark('empty');

@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IBoard } from '../types';
-import { COLS, generateData, generateEmptyBoard, MINES_TOTAL, ROWS } from '../utils';
+import { generateData, generateEmptyBoard, MINES_TOTAL } from '../utils';
 
 export interface GameState {
   board: IBoard;
   mines: number;
-  rest: number;
   res: string;
   isActive: boolean;
   start: {
@@ -18,7 +17,6 @@ export interface GameState {
 const initialState: GameState = {
   board: generateEmptyBoard(),
   mines: MINES_TOTAL,
-  rest: COLS * ROWS,
   res: '',
   isActive: false,
   start: {
@@ -39,7 +37,6 @@ export const gameSlice = createSlice({
     openBoardCell: (state, { payload }) => {
       const { row, col } = payload;
       state.board[row][col].open = true;
-      state.rest -= 1;
     },
     runGame: (state, { payload: { row, col } }) => {
       state.isActive = true;
@@ -55,12 +52,6 @@ export const gameSlice = createSlice({
     },
     decrementMines: (state) => {
       state.mines -= 1;
-    },
-    decrementRest: (state) => {
-      state.rest -= 1;
-    },
-    incrementRest: (state) => {
-      state.rest += 1;
     },
     setRes: (state, { payload }) => {
       state.res = payload;
@@ -78,8 +69,6 @@ export const {
   openBoardCell,
   incrementMines,
   decrementMines,
-  incrementRest,
-  decrementRest,
   runGame,
   stopGame,
   setRes,
