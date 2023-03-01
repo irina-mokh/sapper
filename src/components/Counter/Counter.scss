@@ -1,0 +1,42 @@
+.counter {
+	z-index: 2;
+	display: flex;
+	.num {
+		width: 26px;
+		height: 47px;
+		display: block;
+		&_zero {
+			background-position: 26.5px top;
+		}
+		&_one {
+			background-position: 0px top;
+		}
+		&_two {
+			background-position: -29px top;
+		}
+		&_three {
+			background-position: -58px top;
+		}
+		&_four {
+			background-position: -86px top;
+	
+		}
+		&_five {
+			background-position: -115px top;
+		}
+		&_six {
+			background-position: -144px top;
+		}
+		&_seven {
+			background-position: -173px top;
+		}
+		&_eight{
+			background-position: -201px top;
+		}
+		&_nine{
+			background-position: 54px top;
+		}
+	}
+	
+}
+

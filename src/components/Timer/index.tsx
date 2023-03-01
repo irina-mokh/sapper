@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Counter } from '../Counter';
 
 type TimerProps = {
   isActive: boolean,
@@ -18,5 +19,5 @@ export const Timer = ({ isActive }: TimerProps) => {
     return () => clearInterval(interval);
   }, [isActive, counter]);
 
-  return <div>{counter}</div>;
+  return <Counter n={counter} />;
 };
