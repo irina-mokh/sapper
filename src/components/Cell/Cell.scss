@@ -1,0 +1,82 @@
+@use '../../styles/vars';
+
+.cell {
+	position: relative;
+	width: 2em;
+	height: 2em;
+	cursor: pointer;
+	list-style: none;
+	&:hover {
+		box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.35);
+	}
+
+	&__up, &__down {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	&__up {
+		z-index: 2;
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		display: block;
+	}
+	&_flag {
+		border: 1px solid red;
+	}
+
+	&_question {
+		border: 1px solid blue;
+	}
+}
+
+.sprite {
+	&__cell {
+    background-position: -35px -102px;
+		&_hidden {
+			background-position: 0px -102px;
+		}
+		&_flag {
+			background-position: -68px -102px;
+		}
+		&_question {
+			background-position: -102px -102px;
+		}
+  }
+  &__cell-num {
+		&_zero {
+			background-position: -35px -102px;
+		}
+		&_one {
+			background-position: 0px bottom;
+		}
+		&_two {
+			background-position: -35px bottom;
+		}
+		&_three {
+			background-position: -70px bottom;
+		}
+		&_four {
+			background-position: -105px bottom;
+
+		}
+		&_five {
+			background-position: -140px bottom;
+		}
+		&_six {
+			background-position: -175px bottom;
+		}
+		&_seven {
+			background-position: -210px bottom;
+		}
+		&_eight{
+			background-position: -245px bottom;
+		}
+  }
+}

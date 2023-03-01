@@ -16,5 +16,5 @@ export const Board = () => {
       </ul>
     );
   });
-  return <main className="board">{rows}</main>;
+  return <main className="board shadow_inside">{rows}</main>;
 };

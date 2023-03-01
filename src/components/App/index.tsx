@@ -8,12 +8,14 @@ export const App = () => {
   const { isActive, mines } = useSelector((state: RootState) => state.game);
   return (
     <div className="app">
-      <header className="header">
-        <div>{mines}</div>
-        <Button></Button>
-        <Timer isActive={isActive}></Timer>
-      </header>
-      <Board />
+      <div className="game shadow">
+        <header className="header">
+          <div>{mines}</div>
+          <Button></Button>
+          <Timer isActive={isActive}></Timer>
+        </header>
+        <Board />
+      </div>
     </div>
   );
 };

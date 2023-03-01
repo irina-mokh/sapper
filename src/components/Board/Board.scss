@@ -1,45 +1,10 @@
+@use '../../styles/vars';
+
+.board {
+	
+}
 .row {
 	display: flex;
+	justify-content: center;
+	margin: 0 auto;
 }
-
-.cell {
-	display: block;
-	text-align: center;
-	width: 20px;
-	height: 20px;
-	position: relative;
-	
-	
-
-	&_flag {
-		border: 1px solid red;
-	}
-
-	&_question {
-		border: 1px solid blue;
-	}
-
-	&_hidden {
-		&::after {
-			z-index: 2;
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			opacity: 0.9;
-			display: block;
-			background-color: aqua;
-		}
-	}
-
-}
-
-// .board {
-// 	&_open {
-// 		.cell_hidden::after{
-// 			display: none;
-// 		}
-// 	}
-// }

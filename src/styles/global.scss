@@ -25,3 +25,53 @@ body {
 }
 
 
+.sprite {
+  background-image: url('../assets/minesweeper-sprites_9TPZzv3.png');
+  background-size: 278px;
+}
+
+.shadow {
+  position: relative;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &::before {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    box-shadow: inset -4px -4px 0px vars.$darkGray;
+  }
+
+  &::after {
+    box-shadow: inset 4px 4px 0px vars.$white;
+    clip-path: polygon(0% 0, 100% 0%, 0% 100%);
+  }
+  ;
+}
+
+.shadow_inside {
+  position: relative;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+  }
+  &::before {
+    clip-path: polygon(0% 0, 100% 0%, 0% 100%);
+    box-shadow: 
+      inset 4px 4px 0px vars.$darkGray;
+  }
+
+  &::after {
+    box-shadow: inset -4px -4px 0px vars.$white;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    
+  }
+
+}

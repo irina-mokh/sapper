@@ -12,6 +12,7 @@ import {
   stopGame,
 } from '../../store/gameSlice';
 import { ICell } from '../../types';
+import { generateNumClass } from '../../utils';
 
 type CellProps = {
   cell: ICell,
@@ -85,19 +86,26 @@ export function Cell({ cell, c, r }: CellProps) {
     }
   };
 
+  const [classByVal, setClass] = useState('');
+  useEffect(() => {
+    const newClass =
+      typeof cell.val === 'number'
+        ? generateNumClass('sprite__cell-num_', cell.val)
+        : 'sprite__cell_bomb';
+    setClass(newClass);
+  }, [cell.val]);
   return (
-    <li
-      key={c}
-      className={
-        'cell ' +
-        (mark === 'flag' ? 'cell_flag ' : '') +
-        (mark === 'question' ? 'cell_question ' : '') +
-        (!cell.open ? 'cell_hidden' : '')
-      }
-      onClick={handleCellClick}
-      onContextMenu={handleMark}
-    >
-      {cell.val ? cell.val : ''}
+    <li key={c} className="cell" onClick={handleCellClick} onContextMenu={handleMark}>
+      {!cell.open && (
+        <p
+          className={
+            'cell__up sprite sprite__cell_hidden ' +
+            (mark === 'flag' ? 'sprite__cell_flag ' : '') +
+            (mark === 'question' ? 'sprite__cell_question ' : '')
+          }
+        ></p>
+      )}
+      <p className={'cell__down sprite sprite__cell-num  ' + classByVal}></p>
     </li>
   );
 }

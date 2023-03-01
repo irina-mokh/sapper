@@ -1,10 +1,14 @@
 @use '../../styles/vars';
 
 .app {
-  max-width: 556px;
+  background-color: beige;
+  height: 100vh;
+}
+.game {
   margin: 1em auto;
-  border: 1px solid vars.$gray;
-
+  padding: 1em 20px;
+  max-width: 551px;
+  background-color: vars.$gray;
 }
 .header {
   display: flex;
