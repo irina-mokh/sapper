@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <div className="app">
       <div className="game shadow">
-        <header className="header">
+        <header className="header shadow_inside">
           <div>{mines}</div>
           <Button></Button>
           <Timer isActive={isActive}></Timer>

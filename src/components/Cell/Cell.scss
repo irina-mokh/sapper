@@ -2,8 +2,8 @@
 
 .cell {
 	position: relative;
-	width: 2em;
-	height: 2em;
+	width: 32px;
+	height: 32px;
 	cursor: pointer;
 	list-style: none;
 	&:hover {
@@ -27,56 +27,56 @@
 		right: 0;
 		display: block;
 	}
+
+	$line: -105px;
+
+	&_zero {
+		background-position: -35px $line;
+	}
+	&_one {
+		background-position: 0px bottom;
+	}
+	&_two {
+		background-position: -35px bottom;
+	}
+	&_three {
+		background-position: -70px bottom;
+	}
+	&_four {
+		background-position: -105px bottom;
+
+	}
+	&_five {
+		background-position: -140px bottom;
+	}
+	&_six {
+		background-position: -175px bottom;
+	}
+	&_seven {
+		background-position: -210px bottom;
+	}
+	&_eight{
+		background-position: -245px bottom;
+	}
+
+	&_hidden {
+		background-position: 0px -104px;
+		
+	}
 	&_flag {
-		border: 1px solid red;
+		background-position: -68px $line;
 	}
-
 	&_question {
-		border: 1px solid blue;
+		background-position: -103px $line;
 	}
-}
+	&_bomb {
+		background-position: -173px $line;
+	}
+	&_explode {
+		background-position: -210px $line;
+	}
+	&_mistake {
+		background-position: -244px $line;
 
-.sprite {
-	&__cell {
-    background-position: -35px -102px;
-		&_hidden {
-			background-position: 0px -102px;
-		}
-		&_flag {
-			background-position: -68px -102px;
-		}
-		&_question {
-			background-position: -102px -102px;
-		}
-  }
-  &__cell-num {
-		&_zero {
-			background-position: -35px -102px;
-		}
-		&_one {
-			background-position: 0px bottom;
-		}
-		&_two {
-			background-position: -35px bottom;
-		}
-		&_three {
-			background-position: -70px bottom;
-		}
-		&_four {
-			background-position: -105px bottom;
-
-		}
-		&_five {
-			background-position: -140px bottom;
-		}
-		&_six {
-			background-position: -175px bottom;
-		}
-		&_seven {
-			background-position: -210px bottom;
-		}
-		&_eight{
-			background-position: -245px bottom;
-		}
-  }
+	}
 }

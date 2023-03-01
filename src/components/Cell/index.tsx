@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
@@ -10,6 +10,7 @@ import {
   runGame,
   setRes,
   stopGame,
+  setDanger,
 } from '../../store/gameSlice';
 import { ICell } from '../../types';
 import { generateNumClass } from '../../utils';
@@ -22,16 +23,19 @@ type CellProps = {
 
 export function Cell({ cell, c, r }: CellProps) {
   const dispatch = useDispatch();
-  const { isActive, start, board } = useSelector((state: RootState) => state.game);
+  const { isActive, start, board, res, isDanger } = useSelector((state: RootState) => state.game);
 
+  const fail = useRef<{ r: number, c: number }>();
   const handleGameOver = () => {
     dispatch(stopGame());
     dispatch(setRes('fail'));
+    fail.current = { r, c };
   };
 
   const openCell = () => {
     if (r == start.row && c === start.col) {
       console.log('first cell!');
+      // TODO
     } else {
       checkForZero(r, c);
     }
@@ -51,7 +55,18 @@ export function Cell({ cell, c, r }: CellProps) {
     }
   }, [cell.open]);
 
+  useEffect(() => {
+    if (res === 'fail' && cell.val === 'X') {
+      dispatch(openBoardCell({ row: r, col: c }));
+    }
+  }, [res]);
+
   const [mark, setMark] = useState('empty');
+
+  // reset marks on restart
+  useEffect(() => {
+    if (!res) setMark('empty');
+  }, [res]);
 
   const handleCellClick = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
@@ -87,25 +102,50 @@ export function Cell({ cell, c, r }: CellProps) {
   };
 
   const [classByVal, setClass] = useState('');
+  //change classNames by value generated
   useEffect(() => {
-    const newClass =
-      typeof cell.val === 'number'
-        ? generateNumClass('sprite__cell-num_', cell.val)
-        : 'sprite__cell_bomb';
+    let newClass = '';
+
+    if (typeof cell.val === 'number') {
+      newClass += generateNumClass('cell_', cell.val);
+    } else {
+      if (res === 'fail' && cell.val === 'X') {
+        if (r !== fail.current?.r && c !== fail.current?.c) {
+          newClass += 'cell_bomb ';
+        } else {
+          newClass += 'cell_explode ';
+        }
+      }
+    }
     setClass(newClass);
-  }, [cell.val]);
+  }, [cell.val, res]);
+
+  const toggleDanger = (e: React.MouseEvent) => {
+    if (e.nativeEvent.which === 1) {
+      dispatch(setDanger(!isDanger));
+    }
+  };
+
   return (
-    <li key={c} className="cell" onClick={handleCellClick} onContextMenu={handleMark}>
+    <li
+      key={c}
+      className="cell"
+      onClick={handleCellClick}
+      onContextMenu={handleMark}
+      onMouseDown={toggleDanger}
+      onMouseUp={toggleDanger}
+    >
       {!cell.open && (
         <p
           className={
-            'cell__up sprite sprite__cell_hidden ' +
-            (mark === 'flag' ? 'sprite__cell_flag ' : '') +
-            (mark === 'question' ? 'sprite__cell_question ' : '')
+            'cell__up sprite cell_hidden ' +
+            (mark === 'flag' ? 'cell_flag ' : '') +
+            (res === 'fail' && mark === 'flag' ? 'cell_mistake ' : '') +
+            (mark === 'question' ? 'cell_question ' : '')
           }
         ></p>
       )}
-      <p className={'cell__down sprite sprite__cell-num  ' + classByVal}></p>
+      <p className={'cell__down sprite ' + classByVal}></p>
     </li>
   );
 }

@@ -27,7 +27,7 @@ body {
 
 .sprite {
   background-image: url('../assets/minesweeper-sprites_9TPZzv3.png');
-  background-size: 278px;
+  background-size: 284px;
 }
 
 .shadow {
@@ -41,13 +41,13 @@ body {
     left: 0;
   }
   &::before {
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 4px calc(100% - 4px), calc(100% - 4px) 4px );
     box-shadow: inset -4px -4px 0px vars.$darkGray;
   }
 
   &::after {
     box-shadow: inset 4px 4px 0px vars.$white;
-    clip-path: polygon(0% 0, 100% 0%, 0% 100%);
+    clip-path: polygon(0% 0, 100% 0%, calc(100% - 4px) 4px, 4px calc(100% - 4px), 0% 100%);
   }
   ;
 }
@@ -63,15 +63,13 @@ body {
     left: -4px;
   }
   &::before {
-    clip-path: polygon(0% 0, 100% 0%, 0% 100%);
-    box-shadow: 
+    clip-path: polygon(0% 0, 100% 0%, calc(100% - 4px) 4px, 4px calc(100% - 4px), 0% 100%);    box-shadow: 
       inset 4px 4px 0px vars.$darkGray;
   }
 
   &::after {
     box-shadow: inset -4px -4px 0px vars.$white;
-    clip-path: polygon(100% 0, 100% 100%, 0 100%);
-    
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 4px calc(100% - 4px), calc(100% - 4px) 4px );    
   }
 
 }

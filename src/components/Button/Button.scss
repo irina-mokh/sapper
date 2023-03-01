@@ -1,0 +1,23 @@
+.btn {
+	background-color: transparent;
+  border: none;
+	background-position: -2px -50px;
+	width: 52px;
+	height: 52px;
+	z-index: 2;
+
+
+	&_fail {
+		background-position: 62px -50px;
+	}
+	&_win {
+		background-position: 8px -50px;
+	}
+
+	&_down {
+		background-position: -56px -50px;
+	}
+	&_danger {
+		background-position: -112px -50px;
+	}
+}

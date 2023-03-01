@@ -1,11 +1,13 @@
 @use '../../styles/vars';
 
 .app {
-  background-color: beige;
+  background-color: vars.$navy;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .game {
-  margin: 1em auto;
   padding: 1em 20px;
   max-width: 551px;
   background-color: vars.$gray;
@@ -13,15 +15,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-}
-
-.btn {
-  background-color: transparent;
-  border: 1px solid vars.$gray;
-  &_fail {
-    border-color: red;
-  }
-  &_win {
-    border-color: green;
-  }
+  margin: 0 0 22px 0;
+  padding: 10px;
+  z-index: 2;
 }
