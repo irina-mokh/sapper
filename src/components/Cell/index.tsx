@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
@@ -22,9 +22,7 @@ type CellProps = {
 
 export function Cell({ cell, c, r }: CellProps) {
   const dispatch = useDispatch();
-  const { isActive, start, board, res, isDanger, fail } = useSelector(
-    (state: RootState) => state.game
-  );
+  const { isActive, board, res, isDanger, fail } = useSelector((state: RootState) => state.game);
 
   const handleGameOver = () => {
     dispatch(stopGame());
@@ -33,11 +31,7 @@ export function Cell({ cell, c, r }: CellProps) {
   };
 
   const openCell = () => {
-    if (r == start.row && c === start.col) {
-      console.log('first cell!');
-    } else {
-      checkForZero(r, c);
-    }
+    checkForZero(r, c);
   };
 
   const checkForZero = (r: number, c: number) => {
@@ -65,7 +59,7 @@ export function Cell({ cell, c, r }: CellProps) {
   // reset marks on restart
   useEffect(() => {
     if (!res) setMark('empty');
-  }, [res]);
+  }, [res, isActive]);
 
   const handleCellClick = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
@@ -83,21 +77,26 @@ export function Cell({ cell, c, r }: CellProps) {
     }
   };
 
-  const handleMark = (e: React.MouseEvent<HTMLLIElement>) => {
-    e.preventDefault();
-    switch (mark) {
-      case 'empty':
-        setMark('flag');
-        dispatch(decrementMines());
-        break;
-      case 'flag':
-        setMark('question');
-        dispatch(incrementMines());
-        break;
-      case 'question':
-        setMark('empty');
-    }
-  };
+  const handleMark = useCallback(
+    (e: React.MouseEvent<HTMLLIElement>) => {
+      e.preventDefault();
+      if (isActive) {
+        switch (mark) {
+          case 'empty':
+            setMark('flag');
+            dispatch(decrementMines());
+            break;
+          case 'flag':
+            setMark('question');
+            dispatch(incrementMines());
+            break;
+          case 'question':
+            setMark('empty');
+        }
+      }
+    },
+    [mark, isActive]
+  );
 
   const [classByVal, setClass] = useState('');
   //change classNames by value generated
