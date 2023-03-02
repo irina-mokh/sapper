@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
@@ -9,6 +9,7 @@ import {
   setRes,
   stopGame,
   setDanger,
+  setFailPosition,
 } from '../../store/gameSlice';
 import { ICell } from '../../types';
 import { generateNumClass } from '../../utils';
@@ -21,19 +22,19 @@ type CellProps = {
 
 export function Cell({ cell, c, r }: CellProps) {
   const dispatch = useDispatch();
-  const { isActive, start, board, res, isDanger } = useSelector((state: RootState) => state.game);
+  const { isActive, start, board, res, isDanger, fail } = useSelector(
+    (state: RootState) => state.game
+  );
 
-  const fail = useRef<{ r: number, c: number }>();
   const handleGameOver = () => {
     dispatch(stopGame());
     dispatch(setRes('fail'));
-    fail.current = { r, c };
+    dispatch(setFailPosition({ row: r, col: c }));
   };
 
   const openCell = () => {
     if (r == start.row && c === start.col) {
       console.log('first cell!');
-      // TODO
     } else {
       checkForZero(r, c);
     }
@@ -45,7 +46,6 @@ export function Cell({ cell, c, r }: CellProps) {
     }
   };
   useEffect(() => {
-    // console.log('UE open', cell, c, r);
     if (isActive && board[r][c].val === 0 && board[r][c].open) {
       if (r > 0) checkForZero(r - 1, c);
       if (r < 15) checkForZero(r + 1, c);
@@ -88,12 +88,10 @@ export function Cell({ cell, c, r }: CellProps) {
       case 'empty':
         setMark('flag');
         dispatch(decrementMines());
-        // dispatch(decrementRest());
         break;
       case 'flag':
         setMark('question');
         dispatch(incrementMines());
-        // dispatch(incrementRest());
         break;
       case 'question':
         setMark('empty');
@@ -109,10 +107,10 @@ export function Cell({ cell, c, r }: CellProps) {
       newClass += generateNumClass('cell_', cell.val);
     } else {
       if (res === 'fail' && cell.val === 'X') {
-        if (r !== fail.current?.r && c !== fail.current?.c) {
-          newClass += 'cell_bomb ';
-        } else {
+        if (r === fail.row && c === fail.col) {
           newClass += 'cell_explode ';
+        } else {
+          newClass += 'cell_bomb ';
         }
       }
     }

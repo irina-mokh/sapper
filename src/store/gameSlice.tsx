@@ -11,6 +11,10 @@ export interface GameState {
     row: number,
     col: number,
   };
+  fail: {
+    row: number,
+    col: number,
+  };
   isDanger: boolean;
 }
 
@@ -20,6 +24,10 @@ const initialState: GameState = {
   res: '',
   isActive: false,
   start: {
+    row: 0,
+    col: 0,
+  },
+  fail: {
     row: 0,
     col: 0,
   },
@@ -59,6 +67,9 @@ export const gameSlice = createSlice({
     setDanger: (state, { payload }) => {
       state.isDanger = payload;
     },
+    setFailPosition: (state, { payload }) => {
+      state.fail = payload;
+    },
   },
 });
 
@@ -73,6 +84,7 @@ export const {
   stopGame,
   setRes,
   setDanger,
+  setFailPosition,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
