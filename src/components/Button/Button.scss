@@ -1,23 +1,24 @@
+$line: -48px;
 .btn {
 	background-color: transparent;
   border: none;
-	background-position: -2px -50px;
+	background-position: 0px $line;
 	width: 52px;
 	height: 52px;
 	z-index: 2;
 
 
 	&_fail {
-		background-position: 62px -50px;
+		background-position: -216px $line;
 	}
 	&_win {
-		background-position: 116px -50px;
+		background-position: -162px $line;
 	}
 
 	&_down {
-		background-position: -56px -50px;
+		background-position: -54px $line;
 	}
 	&_danger {
-		background-position: -112px -50px;
+		background-position: -108px $line;
 	}
 }

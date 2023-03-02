@@ -6,9 +6,7 @@
 	height: 32px;
 	cursor: pointer;
 	list-style: none;
-	&:hover {
-		box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.35);
-	}
+	
 
 	&__up, &__down {
 		position: absolute;
@@ -26,57 +24,60 @@
 		bottom: 0;
 		right: 0;
 		display: block;
+		&:hover {
+			box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.1);
+		}
 	}
 
-	$line: -105px;
+	$line: -102px;
 
 	&_zero {
-		background-position: -35px $line;
+		background-position: -34px $line;
 	}
 	&_one {
 		background-position: 0px bottom;
 	}
 	&_two {
-		background-position: -35px bottom;
+		background-position: -34px bottom;
 	}
 	&_three {
-		background-position: -70px bottom;
+		background-position: -68px bottom;
 	}
 	&_four {
-		background-position: -105px bottom;
+		background-position: -102px bottom;
 
 	}
 	&_five {
-		background-position: -140px bottom;
+		background-position: -136px bottom;
 	}
 	&_six {
-		background-position: -175px bottom;
+		background-position: -170px bottom;
 	}
 	&_seven {
-		background-position: -210px bottom;
+		background-position: -204px bottom;
 	}
 	&_eight{
-		background-position: -245px bottom;
+		background-position: -238px bottom;
 	}
 
 	&_hidden {
-		background-position: 0px -104px;
+		background-position: 0px -102px;
 		
 	}
 	&_flag {
-		background-position: -69px $line;
+		background-position: -68px $line;
 	}
 	&_question {
-		background-position: -104px $line;
+		background-position: -102px $line;
 	}
 	&_bomb {
-		background-position: -174px $line;
+		background-position: -170px $line;
 	}
 	&_explode {
-		background-position: -210px $line;
+		background-position: -204px $line;
 	}
 	&_mistake {
-		background-position: -244px $line;
+		background-position: -238px $line;
 
 	}
 }
