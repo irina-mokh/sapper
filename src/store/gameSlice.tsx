@@ -48,7 +48,7 @@ export const gameSlice = createSlice({
     },
     runGame: (state, { payload: { row, col } }) => {
       state.isActive = true;
-      state.res = 'empty';
+      state.res = '';
       state.start = { row, col };
       state.board = generateData(row, col);
     },

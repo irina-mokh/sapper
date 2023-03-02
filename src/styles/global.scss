@@ -63,7 +63,8 @@ body {
   }
 
   &::before {
-    clip-path: polygon(0% 0, 100% 0%, calc(100% - 4px) 4px, 4px calc(100% - 4px), 0% 100%);    box-shadow: 
+    clip-path: polygon(0% 0, 100% 0%, calc(100% - 4px) 4px, 4px calc(100% - 4px), 0% 100%);
+    box-shadow: 
       inset 4px 4px 0px vars.$darkGray;
   }
 

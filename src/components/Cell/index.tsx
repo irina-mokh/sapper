@@ -69,15 +69,16 @@ export function Cell({ cell, c, r }: CellProps) {
 
   const handleCellClick = (e: React.MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
-
-    if (!isActive) {
-      dispatch(runGame({ row: r, col: c }));
-      openCell();
-    } else {
-      if (cell.val === 'X') {
-        handleGameOver();
-      } else {
+    if (!res) {
+      if (!isActive) {
+        dispatch(runGame({ row: r, col: c }));
         openCell();
+      } else {
+        if (cell.val === 'X') {
+          handleGameOver();
+        } else {
+          openCell();
+        }
       }
     }
   };
