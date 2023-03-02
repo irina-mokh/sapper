@@ -1,6 +1,7 @@
 .counter {
 	z-index: 2;
 	display: flex;
+
 	.num {
 		width: 26px;
 		height: 46px;
@@ -19,7 +20,6 @@
 		}
 		&_four {
 			background-position: -84px top;
-	
 		}
 		&_five {
 			background-position: -112px top;
@@ -37,6 +37,5 @@
 			background-position: -224px top;
 		}
 	}
-	
 }
 

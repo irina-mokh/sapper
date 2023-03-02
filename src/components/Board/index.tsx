@@ -1,10 +1,11 @@
-import { Cell } from '../Cell';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
-import { ICell } from '../../types';
 import { useEffect } from 'react';
+import { RootState } from '../../store';
 import { setRes } from '../../store/gameSlice';
 import { MINES_TOTAL } from '../../utils';
+import { ICell } from '../../types';
+import { Cell } from '../Cell';
+
 export const Board = () => {
   const { board, mines } = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();

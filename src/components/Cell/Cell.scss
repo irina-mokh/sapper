@@ -6,7 +6,6 @@
 	height: 32px;
 	cursor: pointer;
 	list-style: none;
-	
 
 	&__up, &__down {
 		position: absolute;
@@ -15,6 +14,7 @@
 		width: 100%;
 		height: 100%;
 	}
+
 	&__up {
 		z-index: 2;
 		content: '';
@@ -45,7 +45,6 @@
 	}
 	&_four {
 		background-position: -102px bottom;
-
 	}
 	&_five {
 		background-position: -136px bottom;
@@ -62,7 +61,6 @@
 
 	&_hidden {
 		background-position: 0px -102px;
-		
 	}
 	&_flag {
 		background-position: -68px $line;
@@ -78,6 +76,5 @@
 	}
 	&_mistake {
 		background-position: -238px $line;
-
 	}
 }

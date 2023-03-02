@@ -1,17 +1,21 @@
 @use '../../styles/vars';
 
 .app {
-  background-color: vars.$navy;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
+  background-color: vars.$navy;
 }
+
 .game {
-  padding: 1em 20px;
   max-width: 551px;
+  margin: 2em 0 0 0;
+  padding: 1em 20px;
   background-color: vars.$gray;
 }
+
 .header {
   display: flex;
   justify-content: space-between;

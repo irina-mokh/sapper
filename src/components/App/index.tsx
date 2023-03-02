@@ -1,9 +1,10 @@
 import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 import { Board } from '../Board';
 import { Timer } from '../Timer';
-import { useSelector } from 'react-redux';
 import { Button } from '../Button';
 import { Counter } from '../Counter';
+import { Footer } from '../Footer/Footer';
 
 export const App = () => {
   const { isActive, mines } = useSelector((state: RootState) => state.game);
@@ -17,6 +18,7 @@ export const App = () => {
         </header>
         <Board />
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Counter } from '../Counter';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { Counter } from '../Counter';
 
 type TimerProps = {
   isActive: boolean,
